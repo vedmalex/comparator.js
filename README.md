@@ -24,6 +24,7 @@ see tests for details
 # TODO
 
  - tests
+ - coverage test
  - benchmark
  - each pair has its own function vise versa
   so Date String then first agument is for sure Data and Second for sure is String!
