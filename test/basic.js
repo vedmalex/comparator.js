@@ -1,14 +1,14 @@
 var index = process.env['COVERAGE'] ? '../index-cov.js' : '../';
 
 var assert = require('assert');
-comarator = require('./../index.js');
+var comarator = require('./../index.js');
 
-strictEq = comarator.strictEq;
-looseEq = comarator.looseEq;
-structureEq = comarator.structureEq;
-diff = comarator.diff;
-
-
+var strictEq = comarator.strictEq;
+var looseEq = comarator.looseEq;
+var structureEq = comarator.structureEq;
+var diff = comarator.diff;
+var fold = comarator.fold;
+var unfold = comarator.unfold;
 
 describe('Comparator', function() {
 	it('works', function() {
@@ -88,6 +88,7 @@ describe('Comparator', function() {
 			reorder:true,
 			result:1
 		});
+
 		diffEqual(diff([{d:1},3],[3,{d:1}]),
 			{
 				"0": {
@@ -212,5 +213,73 @@ describe('Comparator', function() {
 				}
 			}
 		});
+		diffEqual(diff([1, 2, 3], [1, 2, 3]), {
+			result: 1,
+			value: [1, 2, 3]
+		});
+		diffEqual(diff([1, 2, 3], [1, 2, 2]), {
+			"0": {
+				"value": {
+					"result": 1,
+					"value": 1
+				}
+			},
+			"1": {
+				"value": {
+					"result": 1,
+					"value": 2
+				}
+			},
+			"result": 0,
+			"reorder": true,
+			"removed": {
+				"2": {
+					"order": -1,
+					"value": 3
+				}
+			},
+			"inserted": {
+				"2": {
+					"order": 2,
+					"value": 2
+				}
+			}
+		});
+	});
+	
+	it('fold/unfold', function(){
+		var obj = {
+			_id: 123456,
+			name: 'name',
+			summary: {
+				_id: 123,
+				item: [1, 2, {
+						name: 1,
+						just: 111,
+						some: [11122, [11, 11]]
+					},
+					4
+				]
+			}
+		};
+		var unfolded = {
+			"_id": 123456,
+			"name": "name",
+			"summary._id": 123,
+			"summary.item.0": 1,
+			"summary.item.1": 2,
+			"summary.item.2.name": 1,
+			"summary.item.2.just": 111,
+			"summary.item.2.some.0": 11122,
+			"summary.item.2.some.1.0": 11,
+			"summary.item.2.some.1.1": 11,
+			"summary.item.3": 4
+		};
+		
+		var res = unfold(obj);
+		var res1 = fold(res);
+		assert.equal(strictEq(res, unfolded), true);
+		assert.equal(strictEq(res1, obj), true);
+
 	});
 });
