@@ -16,6 +16,8 @@ type of comparisons
 4. diff
 	return difference beetwen two objects in js format.
 
+utils
+ fold/unfold objects
 
 # more info
 

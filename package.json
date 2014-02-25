@@ -1,5 +1,5 @@
 {
-  "name": "pipeline.js",
+  "name": "comparator.js",
   "description": "Comparator.js - different way to compare your js-objects",
   "version": "0.0.1",
   "author": {
@@ -7,9 +7,8 @@
     "email": "vedmalex@gmail.com"
   },
   "keywords": [
-    "workflow",
-    "async",
-    "pipeline"
+    "compare",
+    "JSON"
   ],
   "dependencies": {
   },
@@ -27,7 +26,7 @@
   },
   "main": "./index.js",
   "engines": {
-    "node": ">= 0.4.0"
+    "node": ">= 0.8.0"
   },
   "repository": {
     "type": "git",
