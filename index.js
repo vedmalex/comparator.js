@@ -7,3 +7,5 @@ exports.structureEq = comparator.structureEq;
 exports.diff = comparator.diff;
 exports.fold = foldunfold.fold;
 exports.unfold = foldunfold.unfold;
+exports.get = foldunfold.get;
+exports.set = foldunfold.set;
