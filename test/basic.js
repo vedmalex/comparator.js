@@ -44,7 +44,10 @@ describe('Comparator', function() {
 		assert.equal(looseEq(true, 'True'), true);
 		assert.equal(looseEq('true', true), true);
 		assert.equal(looseEq('True', true), true);
-
+		assert.equal(looseEq(false, 'false'), true);
+		assert.equal(looseEq(false, 'False'), true);
+		assert.equal(looseEq('false', false), true);
+		assert.equal(looseEq('False', false), true);
 		assert.equal(looseEq(true, '1'), true);
 		assert.equal(looseEq('1', true), true);
 
