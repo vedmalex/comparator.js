@@ -165,8 +165,8 @@ describe('Comparator', function() {
 				}
 			}
 		});
-		diffEqual(diff({b:1, a:[{d:1},3]}, {a:[3,{d:2}], b:1}), {
-			"result": 2,
+		diffEqual(diff({b:1, a:[{d:1},3]}, {a:[3,{d:1}], b:1}),{
+			"result": 1,
 			"reorder": true,
 			"a": {
 				"order": {
@@ -180,11 +180,10 @@ describe('Comparator', function() {
 							"to": 1
 						},
 						"value": {
-							"result": 2,
+							"result": 1,
 							"d": {
-								"result": 3,
-								from:1,
-								to:2
+								"result": 1,
+								"value": 1
 							}
 						}
 					},
@@ -198,8 +197,59 @@ describe('Comparator', function() {
 							"value": 3
 						}
 					},
-					"result": 2,
+					"result": 1,
 					"reorder": true
+				}
+			},
+			"b": {
+				"order": {
+					"from": 0,
+					"to": 1
+				},
+				"value": {
+					"result": 1,
+					"value": 1
+				}
+			}
+		});
+
+		diffEqual(diff({b:1, a:[{d:1},3]}, {a:[3,{d:2}], b:1}), {
+			"result": 3,
+			"reorder": true,
+			"a": {
+				"order": {
+					"from": 1,
+					"to": 0
+				},
+				"value": {
+					"1": {
+						"order": {
+							"from": 1,
+							"to": 0
+						},
+						"value": {
+							"result": 1,
+							"value": 3
+						}
+					},
+					"result": 3,
+					"reorder": true,
+					"removed": {
+						"0": {
+							"order": -1,
+							"value": {
+								"d": 1
+							}
+						}
+					},
+					"inserted": {
+						"1": {
+							"order": 1,
+							"value": {
+								"d": 2
+							}
+						}
+					}
 				}
 			},
 			"b": {
