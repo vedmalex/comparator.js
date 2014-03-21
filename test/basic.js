@@ -40,6 +40,14 @@ describe('Comparator', function() {
 		assert.equal(looseEq(function(){}, function(){}), true);
 		assert.equal(looseEq(/undefined/, undefined), true);
 		assert.equal(looseEq(/null/, null), true);
+		assert.equal(looseEq(true, 'true'), true);
+		assert.equal(looseEq(true, 'True'), true);
+		assert.equal(looseEq('true', true), true);
+		assert.equal(looseEq('True', true), true);
+
+		assert.equal(looseEq(true, '1'), true);
+		assert.equal(looseEq('1', true), true);
+
 		assert.equal(looseEq({a:1}, {a:1, b:1}), true);
 		assert.equal(looseEq({a:1, b:1}, {a:1}), false);
 		assert.equal(looseEq({b:1, a:1}, {a:1, b:1}), true);
