@@ -1,7 +1,7 @@
 {
   "name": "comparator.js",
   "description": "Comparator.js - different way to compare your js-objects",
-  "version": "0.0.11",
+  "version": "1.0.0",
   "author": {
     "name": "Alex Vedmedenko",
     "email": "vedmalex@gmail.com"
@@ -17,18 +17,23 @@
     "mocha": "*",
     "benchmark": "*",
     "browserify": "*",
-    "dox": "*"
+    "dox": "*",
+    "eslint": "7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-unicorn": "^34.0.1",
+    "prettier": "^2.3.2"
   },
   "directories": {
     "lib": "./lib"
   },
   "scripts": {
-    "test": "make test"
+    "test": "make test",
+    "lint": "npx eslint --ext .js ./"
   },
   "main": "./index.js",
-  "engines": {
-    "node": ">= 0.8.0"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/vedmalex/comparator.js.git"
@@ -37,7 +42,5 @@
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/vedmalex/comparator.js/issues"
-  },
-  "_id": "pipeline.js@0.0.29",
-  "_from": "pipeline.js@"
+  }
 }
