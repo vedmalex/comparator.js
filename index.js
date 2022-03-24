@@ -9,4 +9,5 @@ exports.fold = require('./lib/fold').fold
 exports.unfold = require('./lib/unfold').unfold
 exports.get = require('./lib/get').get
 exports.set = require('./lib/set').set
-exports.unset = require('./lib/set').unset
+exports.unset = require('./lib/unset').unset
+exports.has = require('./lib/has').has

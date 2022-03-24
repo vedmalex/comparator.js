@@ -1,7 +1,7 @@
 {
   "name": "comparator.js",
   "description": "Comparator.js - different way to compare your js-objects",
-  "version": "1.1.0",
+  "version": "1.2.2",
   "author": {
     "name": "Alex Vedmedenko",
     "email": "vedmalex@gmail.com"
@@ -10,7 +10,9 @@
     "compare",
     "JSON"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "diff": "^5.0.0"
+  },
   "devDependencies": {
     "eslint": "7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
