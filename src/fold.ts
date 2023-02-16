@@ -1,6 +1,6 @@
-const { set } = require('./set')
+import { set } from './set'
 
-function fold(data) {
+export function fold<T extends Record<string, any>>(data: T):Record<string, any> {
   const result = {}
   const keys = Object.keys(data)
   for (let i = 0, len = keys.length; i < len; i += 1) {
@@ -8,5 +8,3 @@ function fold(data) {
   }
   return result
 }
-
-exports.fold = fold

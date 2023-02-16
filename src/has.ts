@@ -1,4 +1,15 @@
-function has(data, path) {
+export function has<T extends Record<string, any>>(
+  data: T,
+  path: string,
+): boolean
+export function has<T extends Record<string, any>>(
+  data: Array<T>,
+  path: string,
+): Array<boolean>
+export function has<T extends Record<string, any>>(
+  data: T | Array<T>,
+  path: string,
+) {
   if (Array.isArray(data)) {
     const result = []
     for (let i = 0, len = data.length; i < len; i += 1) {
@@ -11,13 +22,12 @@ function has(data, path) {
       if (Array.isArray(parts)) {
         const curr = parts.shift()
         if (parts.length > 0) {
-          return has(data[curr], parts.join('.'))
+          return has(data[curr as string], parts.join('.'))
         }
-        return curr in data
+        return (curr as string) in data
       }
+    } else {
+      return path in data
     }
-    return curr in data
   } else return true
 }
-
-exports.has = has

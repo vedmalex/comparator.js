@@ -1,24 +1,26 @@
 module.exports = {
-  env: {
-    browser: true,
-    commonjs: true,
-    es2021: true,
-    node: true,
-  },
-  extends: ['airbnb-base', 'eslint:recommended', 'plugin:prettier/recommended'],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 12,
+    project: 'tsconfig.json',
+    sourceType: 'module',
+  },
+  plugins: ['@typescript-eslint/eslint-plugin'],
+  extends: [
+    'plugin:@typescript-eslint/recommended',
+    'prettier/@typescript-eslint',
+    'plugin:prettier/recommended',
+  ],
+  root: true,
+  env: {
+    node: true,
+    jest: true,
   },
   rules: {
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
     'require-atomic-updates': 'warn',
     'no-return-await': 'warn',
     'require-await': 'warn',
-    'no-param-reassign': ['error', { props: false }],
-    'consistent-return': 'warn',
-    'no-unused-vars': 'warn',
-    'no-underscore-dangle': 'warn',
-    'new-cap': 'warn',
-    'no-nested-ternary': 'warn',
-    camelcase: 'warn',
   },
 }

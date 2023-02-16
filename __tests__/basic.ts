@@ -1,15 +1,7 @@
-const index = process.env.COVERAGE ? '../index-cov.js' : '../'
-const { inspect } = require('util')
-
+import 'jest'
 const assert = require('assert')
-const comarator = require('../index.js')
 
-const { strictEq } = comarator
-const { looseEq } = comarator
-const { structureEq } = comarator
-const { diff } = comarator
-const { fold } = comarator
-const { unfold } = comarator
+import { strictEq, looseEq, structureEq, diff, fold, unfold } from '../src'
 
 describe('Comparator', function () {
   it('works', function () {})
@@ -104,8 +96,13 @@ describe('Comparator', function () {
   })
 
   it('diff', function () {
+    //@ts-ignore
     function diffEqual(source, dest) {
-      assert.ok(looseEq(source, dest))
+      const res = looseEq(source, dest)
+      if (!res) {
+        debugger
+      }
+      assert.ok(res)
     }
     diffEqual(diff({ b: 1, a: 3 }, { a: 3, b: 1 }), {
       a: {

@@ -1,4 +1,4 @@
-function unset(data, path) {
+export function unset(data: Record<string, any>, path: string) {
   if (Array.isArray(data)) {
     for (let i = 0, len = data.length; i < len; i += 1) {
       unset(data[i], path)
@@ -9,9 +9,9 @@ function unset(data, path) {
       if (Array.isArray(parts)) {
         const curr = parts.shift()
         if (parts.length > 0) {
-          unset(data[curr], parts.join('.'))
+          unset(data[curr as string], parts.join('.'))
         } else {
-          delete data[curr]
+          delete data[curr as string]
         }
       }
     } else {
@@ -19,5 +19,3 @@ function unset(data, path) {
     }
   }
 }
-
-exports.unset = unset

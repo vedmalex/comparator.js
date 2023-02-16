@@ -8,33 +8,34 @@
 // проверить работу, посде доделать адресно для каждого типа
 // так чтобы знать какой параметр каким приходит
 // чтобы было меньше проверок
-const jsdiff = require('diff')
+import { diffLines } from 'diff'
+import { EqualityIput } from './comparator'
 
-exports.cmp = eq => {
+export function cmp(eq:EqualityIput) {
   return {
     Boolean: {
       Boolean: {
-        strict(a, b) {
+        strict(a:boolean, b:boolean) {
           return a === b
         },
-        loose(a, b) {
+        loose(a:boolean, b:boolean) {
           return a == b
         },
         structure: eq.true,
       },
       Number: {
-        loose(a, b) {
-          return a == b
+        loose(a:boolean, b:number) {
+          return a == !!b
         },
       },
       String: {
-        loose(a, b) {
+        loose(a:boolean, b:string) {
           const bFalse = /false/i.test(b) || /0/.test(b)
           const bTrue = /true/i.test(b) || /1/.test(b)
           if (a) return a === bTrue
           return a === !bFalse
         },
-        diff(a, b) {
+        diff(a:boolean, b:string) {
           let res
           const bFalse = /false/i.test(b) || /0/.test(b)
           const bTrue = /true/i.test(b) || /1/.test(b)
@@ -54,70 +55,70 @@ exports.cmp = eq => {
         },
       },
       Undefined: {
-        loose(a, b) {
+        loose(a:boolean, b:undefined) {
           return !a == !b
         },
       },
       Null: {
-        loose(a, b) {
+        loose(a: boolean, b: null) {
           return !a == !b
         },
       },
     },
     Number: {
       Number: {
-        strict(a, b) {
+        strict(a:number, b:number) {
           return a === b
         },
-        loose(a, b) {
+        loose(a:number, b:number) {
           return a == b
         },
         structure: eq.true,
       },
       String: {
-        loose(a, b) {
-          return a == b
+        loose(a:number, b:string) {
+          return a == +b
         },
       },
       Date: {
-        strict(a, b) {
-          return a == b
+        strict(a:number, b:Date) {
+          return a === b.valueOf()
         },
-        loose(a, b) {
+        loose(a:number, b:Date) {
           return a.valueOf() == b.valueOf()
         },
         structure: eq.true,
       },
       Null: {
-        loose(a, b) {
+        loose(a:number, b:null) {
           return !a == !b
         },
       },
       Undefined: {
-        loose(a, b) {
+        loose(a:number, b:undefined) {
           return !a == !b
         },
       },
       Object: {
-        loose(a, b) {
+        loose(a:number, b:object) {
           return a.toString() == b.toString()
         },
       },
       Function: {
-        loose(a, b) {
+        loose(a:number, b:Function) {
           return a.toString() == b.toString()
         },
       },
     },
     String: {
       Boolean: {
-        loose(a, b) {
+        loose(a:string, b:boolean) {
           const aFalse = /false/i.test(a) || /0/.test(a)
           const aTrue = /true/i.test(a) || /1/.test(a)
           if (b) return b === aTrue
           return b === !aFalse
         },
-        diff(a, b) {
+        diff(a:string, b:boolean) {
           let res
           const aFalse = /false/i.test(a) || /0/.test(a)
           const aTrue = /true/i.test(a) || /1/.test(a)
@@ -137,20 +138,20 @@ exports.cmp = eq => {
         },
       },
       String: {
-        strict(a, b) {
+        strict(a:string, b:string) {
           return a == b
         },
-        loose(a, b) {
+        loose(a:string, b:string) {
           return a == b
         },
         structure: eq.true,
-        diff(a, b) {
+        diff(a:string, b:string) {
           if (a == b)
             return {
               result: 1,
               value: b,
             }
-          const result = jsdiff.diffLines(a, b)
+          const result = diffLines(a, b)
           const srcLen = a.length
           const dstLen = b.length
           let unchangedCnt = 0
@@ -201,23 +202,22 @@ exports.cmp = eq => {
         },
       },
       RegExp: {
-        strict(a, b) {
-          return a == b
+        strict(a:string, b:RegExp) {
+          return a == b.source
         },
-        loose(a, b) {
+        loose(a:string, b:string) {
           return a.toString() == b.toString()
         },
         structure: eq.false,
       },
       Date: {
-        strict(a, b) {
+        strict(a:string, b:Date) {
           if (a.toString() == b.toString()) return true
 
-          if (a.toJSON || b.toJSON) {
+          if (b.toJSON) {
             let v0
             let v1
-            if (a.toJSON) v0 = a.toJSON()
-            else v0 = a.toString()
+            v0 = a
 
             if (b.toJSON) v1 = b.toJSON()
             else v1 = b.toString()
@@ -225,15 +225,13 @@ exports.cmp = eq => {
           }
           return false
         },
-        loose(a, b) {
+        loose(a:string, b:Date) {
           if (a.toString() == b.toString()) return true
 
-          if (a.toJSON || b.toJSON) {
+          if ( b.toJSON) {
             let v0
             let v1
-            if (a.toJSON) v0 = a.toJSON()
-            else v0 = a.toString()
-
+            v0 = a
             if (b.toJSON) v1 = b.toJSON()
             else v1 = a.toString()
             return v0 == v1
@@ -241,19 +239,17 @@ exports.cmp = eq => {
           return false
         },
         structure: eq.true,
-        diff(a, b) {
+        diff(a:string, b:Date) {
           if (a.toString() == b.toString())
             return {
               result: eq.STRICT,
               value: b.toString(),
             }
 
-          if (a.toJSON || b.toJSON) {
+          if (b.toJSON) {
             let v0
             let v1
-            if (a.toJSON) v0 = a.toJSON()
-            else v0 = a.toString()
-
+            v0 = a
             if (b.toJSON) v1 = b.toJSON()
             else v1 = b.toString()
 
@@ -273,38 +269,38 @@ exports.cmp = eq => {
         },
       },
       Null: {
-        loose(a, b) {
+        loose(a:string, b:null) {
           return !a == !b
         },
       },
       Undefined: {
-        loose(a, b) {
+        loose(a:string, b:undefined) {
           return !a == !b
         },
       },
       Array: {
-        strict(a, b) {
-          return a == b
+        strict(a:string, b:Array<any>) {
+          return a == b.join()
         },
-        loose(a, b) {
-          return a.toString() == b.toString()
+        loose(a:string, b:Array<any>) {
+          return a== b.join()
         },
         structure: eq.true,
       },
       Object: {
-        strict(a, b) {
+        strict(a:string, b:object) {
           return a.toString() == b.toString()
         },
-        loose(a, b) {
+        loose(a:string, b:object) {
           return a.toString() == b.toString()
         },
         structure: eq.false,
       },
       Function: {
-        strict(a, b) {
+        strict(a:string, b:Function) {
           return a.toString() == b.toString()
         },
-        loose(a, b) {
+        loose(a:string, b:Function) {
           return a.toString() == b.toString()
         },
         structure: eq.true,
@@ -313,54 +309,50 @@ exports.cmp = eq => {
     RegExp: {
       // ввести сравнение регулярок с json версией mongoosejs
       RegExp: {
-        strict(a, b) {
+        strict(a:RegExp, b:RegExp) {
           return a === b
         },
-        loose(a, b) {
+        loose(a:RegExp, b:RegExp) {
           return a.toString() == b.toString()
         },
         structure: eq.true,
         diff: eq.diffString,
       },
       Undefined: {
-        loose(a, b) {
-          if (a instanceof RegExp) return a.test(b)
-          return b.test(a)
+        loose(a:RegExp, b:undefined) {
+          return a.test('undefined')
         },
       },
       Null: {
-        loose(a, b) {
-          if (a instanceof RegExp) {
-            return a.test(b)
-          }
-          return b.test(a)
+        loose(a:RegExp, b:null) {
+          return a.test('null')
         },
       },
       Object: {
-        strict(a, b) {
+        strict(a:RegExp, b:string) {
           return a.toString() == b.toString()
         },
-        loose(a, b) {
+        loose(a:RegExp, b:string) {
           return a.toString() == b.toString()
         },
       },
     },
     Date: {
       Date: {
-        strict(a, b) {
+        strict(a:Date, b:Date) {
           if (a === b) return true
           return a.toString() == b.toString()
         },
-        loose(a, b) {
+        loose(a:Date, b:Date) {
           return a.toString() == b.toString()
         },
         structure: eq.true,
       },
       Object: {
-        strict(a, b) {
+        strict(a:Date, b:object) {
           return a.toString() == b.toString()
         },
-        loose(a, b) {
+        loose(a:Date, b:object) {
           return a.toString() == b.toString()
         },
         structure: eq.false,
@@ -452,10 +444,10 @@ exports.cmp = eq => {
     },
     Function: {
       Function: {
-        strict(a, b) {
+        strict(a:Function, b:Function) {
           return a === b
         },
-        loose(a, b) {
+        loose(a:Function, b:Function) {
           return a.toString() == b.toString()
         },
         structure: eq.true,
