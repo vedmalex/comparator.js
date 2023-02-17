@@ -1,1 +1,14 @@
 node_modules/
+coverage
+src
+__tests__
+.vscode
+.eslintignore
+.eslintrc.js
+.gitignore
+.npmignore
+.prettierrc.js
+jest.config.js
+tsconfig.json
+webpack.config.js
+yarn.lock

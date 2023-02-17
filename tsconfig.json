@@ -5,6 +5,7 @@
     "esModuleInterop": true,
     "sourceMap": true,
     "declaration": true,
+    "importHelpers": true,
     "declarationMap": true,
     "removeComments": true,
     "strict": true,
@@ -21,16 +22,21 @@
     "noUnusedLocals": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["ES2020"],
-    "types": ["node", "jest"],
-    "baseUrl": "./",
-    "rootDir": "./src",
-    "outDir": "dist",
     "allowSyntheticDefaultImports": true,
     "target": "es2018",
     "experimentalDecorators": true,
     "moduleResolution": "node",
-    "allowJs": true
+    "types": ["node", "jest"],
+    "baseUrl": ".",
+    "outDir": "types",
+    "rootDir": "src",
+    "allowJs": true,
+    "paths": {
+      // "@DTO/*": ["./src/dto/*"] // алиас для DTO
+      // "@/*": ["./*"], // алиас для текущей директории
+      // "~/*": ["./src/*"] // алиас для корневой директории
+    }
   },
-  "include": ["src/**/*"],
-  "exclude": ["**/__tests__", "**/__mocks__"]
+  "include": ["./src/**/*", "types/global.d.ts"],
+  "exclude": ["./src/__tests__"]
 }

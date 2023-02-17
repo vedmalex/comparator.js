@@ -83,7 +83,11 @@ export declare function cmp(eq: EqualityIput): {
             } | {
                 result: import("./comparator").EqResult.LOOSE;
                 diff: string;
-                changes: import("diff").Change[];
+                changes: import("diff").Change[] | {
+                    added: string;
+                    removed: string;
+                    value: string;
+                }[];
                 value?: undefined;
                 changeRating?: undefined;
                 from?: undefined;
@@ -91,7 +95,11 @@ export declare function cmp(eq: EqualityIput): {
             } | {
                 result: import("./comparator").EqResult.STRUCTURE;
                 diff: string;
-                changes: import("diff").Change[];
+                changes: import("diff").Change[] | {
+                    added: string;
+                    removed: string;
+                    value: string;
+                }[];
                 changeRating: number;
                 value?: undefined;
                 from?: undefined;
