@@ -14,20 +14,40 @@
     "diff": "^5.0.0"
   },
   "devDependencies": {
-    "eslint": "7.32.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-config-prettier": "8.3.0",
-    "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-unicorn": "^34.0.1",
-    "prettier": "^2.3.2"
+    "@types/jest": "^29.4.0",
+    "@types/node": "^18.13.0",
+    "@types/webpack": "^5.28.0",
+    "@typescript-eslint/eslint-plugin": "5.52.0",
+    "@typescript-eslint/parser": "5.52.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "dts-bundle": "^0.7.3",
+    "dts-bundle-webpack": "^1.0.2",
+    "eslint": "^8.34.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-unicorn": "^45.0.2",
+    "jest": "^29.4.3",
+    "prettier": "^2.8.4",
+    "ts-jest": "^29.0.5",
+    "ts-loader": "^9.4.2",
+    "ts-macros": "^2.1.0",
+    "ts-node": "^10.9.1",
+    "typescript": "next",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-node-externals": "^3.0.0"
   },
   "directories": {
     "lib": "./lib"
   },
   "scripts": {
-    "test": "make test",
-    "lint": "npx eslint --ext .js ./"
+    "prepublish": "webpack --config webpack.config.js --mode=production --env targets=node --env=noclean",
+    "test": "jest --coverage",
+    "clean": "git clean -dfqX -- ./node_modules **/{dist,node_modules}/",
+    "build": "webpack --config webpack.config.js --mode=production --env targets=node",
+    "watch": "webpack --watch --config webpack.config.js --dev",
+    "format": "prettier --write \"src/**/*.ts\""
   },
   "main": "./index.js",
   "repository": {

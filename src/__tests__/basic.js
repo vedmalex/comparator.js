@@ -1,5 +1,4 @@
 const index = process.env.COVERAGE ? '../index-cov.js' : '../'
-const { inspect } = require('util')
 
 const assert = require('assert')
 const comarator = require('../index.js')
