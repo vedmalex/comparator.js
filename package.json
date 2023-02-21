@@ -1,7 +1,7 @@
 {
   "name": "comparator.js",
   "description": "Comparator.js - different way to compare your js-objects",
-  "version": "1.2.2",
+  "version": "1.4.2",
   "author": {
     "name": "Alex Vedmedenko",
     "email": "vedmalex@gmail.com"
