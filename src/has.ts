@@ -11,7 +11,7 @@ export function has<T extends Record<string, any>>(
   path: string,
 ) {
   if (Array.isArray(data)) {
-    const result = []
+    const result: Array<any> = []
     for (let i = 0, len = data.length; i < len; i += 1) {
       result.push(has(data[i], path))
     }

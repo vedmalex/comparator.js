@@ -1,0 +1,1 @@
+{"version":3,"file":"index.module.d.ts","sourceRoot":"","sources":["../src/index.ts","../src/mapping.ts","../src/comparator.ts","../src/set.ts","../src/fold.ts","../src/unfold.ts","../src/get.ts","../src/unset.ts","../src/has.ts"],"names":[],"mappings":";;;;;;;;;;;;;AAAA,OAAO,2FAMN,CAAoB"}

@@ -30,9 +30,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">18.86% </span>
+                <span class="strong">18.18% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>10/53</span>
+                <span class='fraction'>10/55</span>
             </div>
         
             
@@ -521,7 +521,12 @@
 <a name='L456'></a><a href='#L456'>456</a>
 <a name='L457'></a><a href='#L457'>457</a>
 <a name='L458'></a><a href='#L458'>458</a>
-<a name='L459'></a><a href='#L459'>459</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L459'></a><a href='#L459'>459</a>
+<a name='L460'></a><a href='#L460'>460</a>
+<a name='L461'></a><a href='#L461'>461</a>
+<a name='L462'></a><a href='#L462'>462</a>
+<a name='L463'></a><a href='#L463'>463</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -674,7 +679,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -989,34 +997,35 @@
 // проверить работу, посде доделать адресно для каждого типа
 // так чтобы знать какой параметр каким приходит
 // чтобы было меньше проверок
+&nbsp;
 import { diffLines } from 'diff'
 import { EqualityIput } from './comparator'
 &nbsp;
-export function cmp(eq:EqualityIput) {
+export function cmp(eq: EqualityIput) {
   return {
     Boolean: {
       Boolean: {
-<span class="fstat-no" title="function not covered" >        strict(</span>a:boolean, b:boolean) {
+<span class="fstat-no" title="function not covered" >        strict(</span>a: boolean, b: boolean) {
 <span class="cstat-no" title="statement not covered" >          return a === b</span>
         },
-        loose(a:boolean, b:boolean) {
+        loose(a: boolean, b: boolean) {
           return a == b
         },
         structure: eq.true,
       },
       Number: {
-<span class="fstat-no" title="function not covered" >        loose(</span>a:boolean, b:number) {
+<span class="fstat-no" title="function not covered" >        loose(</span>a: boolean, b: number) {
 <span class="cstat-no" title="statement not covered" >          return a == !!b</span>
         },
       },
       String: {
-        loose(a:boolean, b:string) {
+        loose(a: boolean, b: string) {
           const bFalse = /false/i.test(b) || /0/.test(b)
           const bTrue = /true/i.test(b) || /1/.test(b)
           if (a) return a === bTrue
           return a === !bFalse
         },
-<span class="fstat-no" title="function not covered" >        diff(</span>a:boolean, b:string) {
+<span class="fstat-no" title="function not covered" >        diff(</span>a: boolean, b: string) {
           let res
           const bFalse = <span class="cstat-no" title="statement not covered" >/false/i.test(b) || /0/.test(b)</span>
           const bTrue = <span class="cstat-no" title="statement not covered" >/true/i.test(b) || /1/.test(b)</span>
@@ -1036,7 +1045,7 @@ export function cmp(eq:EqualityIput) {
         },
       },
       Undefined: {
-<span class="fstat-no" title="function not covered" >        loose(</span>a:boolean, b:undefined) {
+<span class="fstat-no" title="function not covered" >        loose(</span>a: boolean, b: undefined) {
 <span class="cstat-no" title="statement not covered" >          return !a == !b</span>
         },
       },
@@ -1048,58 +1057,58 @@ export function cmp(eq:EqualityIput) {
     },
     Number: {
       Number: {
-        strict(a:number, b:number) {
+        strict(a: number, b: number) {
           return a === b
         },
-        loose(a:number, b:number) {
+        loose(a: number, b: number) {
           return a == b
         },
         structure: eq.true,
       },
       String: {
-<span class="fstat-no" title="function not covered" >        loose(</span>a:number, b:string) {
+<span class="fstat-no" title="function not covered" >        loose(</span>a: number, b: string) {
 <span class="cstat-no" title="statement not covered" >          return a == +b</span>
         },
       },
       Date: {
-<span class="fstat-no" title="function not covered" >        strict(</span>a:number, b:Date) {
+<span class="fstat-no" title="function not covered" >        strict(</span>a: number, b: Date) {
 <span class="cstat-no" title="statement not covered" >          return a === b.valueOf()</span>
         },
-<span class="fstat-no" title="function not covered" >        loose(</span>a:number, b:Date) {
+<span class="fstat-no" title="function not covered" >        loose(</span>a: number, b: Date) {
 <span class="cstat-no" title="statement not covered" >          return a.valueOf() == b.valueOf()</span>
         },
         structure: eq.true,
       },
       Null: {
-<span class="fstat-no" title="function not covered" >        loose(</span>a:number, b:null) {
+<span class="fstat-no" title="function not covered" >        loose(</span>a: number, b: null) {
 <span class="cstat-no" title="statement not covered" >          return !a == !b</span>
         },
       },
       Undefined: {
-        loose(a:number, b:undefined) {
+        loose(a: number, b: undefined) {
           return !a == !b
         },
       },
       Object: {
-        loose(a:number, b:object) {
+        loose(a: number, b: object) {
           return a.toString() == b.toString()
         },
       },
       Function: {
-<span class="fstat-no" title="function not covered" >        loose(</span>a:number, b:Function) {
+<span class="fstat-no" title="function not covered" >        loose(</span>a: number, b: Function) {
 <span class="cstat-no" title="statement not covered" >          return a.toString() == b.toString()</span>
         },
       },
     },
     String: {
       Boolean: {
-        loose(a:string, b:boolean) {
+        loose(a: string, b: boolean) {
           const aFalse = /false/i.test(a) || /0/.test(a)
           const aTrue = /true/i.test(a) || /1/.test(a)
           if (b) return b === aTrue
           return b === !aFalse
         },
-<span class="fstat-no" title="function not covered" >        diff(</span>a:string, b:boolean) {
+<span class="fstat-no" title="function not covered" >        diff(</span>a: string, b: boolean) {
           let res
           const aFalse = <span class="cstat-no" title="statement not covered" >/false/i.test(a) || /0/.test(a)</span>
           const aTrue = <span class="cstat-no" title="statement not covered" >/true/i.test(a) || /1/.test(a)</span>
@@ -1119,20 +1128,23 @@ export function cmp(eq:EqualityIput) {
         },
       },
       String: {
-        strict(a:string, b:string) {
+        strict(a: string, b: string) {
           return a == b
         },
-<span class="fstat-no" title="function not covered" >        loose(</span>a:string, b:string) {
+<span class="fstat-no" title="function not covered" >        loose(</span>a: string, b: string) {
 <span class="cstat-no" title="statement not covered" >          return a == b</span>
         },
         structure: eq.true,
-<span class="fstat-no" title="function not covered" >        diff(</span>a:string, b:string) {
+<span class="fstat-no" title="function not covered" >        diff(</span>a: string, b: string) {
 <span class="cstat-no" title="statement not covered" >          <span class="missing-if-branch" title="if path not taken" >I</span>if (a == b)</span>
 <span class="cstat-no" title="statement not covered" >            return {</span>
               result: 1,
               value: b,
             }
-          const result = <span class="cstat-no" title="statement not covered" >diffLines(a, b)</span>
+&nbsp;
+          const result = <span class="cstat-no" title="statement not covered" >WEB</span>
+            ? [{ added: b, removed: a, value: a }]
+            : diffLines(a, b)
           const srcLen = <span class="cstat-no" title="statement not covered" >a.length</span>
           const dstLen = <span class="cstat-no" title="statement not covered" >b.length</span>
           let unchangedCnt = <span class="cstat-no" title="statement not covered" >0</span>
@@ -1183,16 +1195,16 @@ export function cmp(eq:EqualityIput) {
         },
       },
       RegExp: {
-<span class="fstat-no" title="function not covered" >        strict(</span>a:string, b:RegExp) {
+<span class="fstat-no" title="function not covered" >        strict(</span>a: string, b: RegExp) {
 <span class="cstat-no" title="statement not covered" >          return a == b.source</span>
         },
-<span class="fstat-no" title="function not covered" >        loose(</span>a:string, b:string) {
+<span class="fstat-no" title="function not covered" >        loose(</span>a: string, b: string) {
 <span class="cstat-no" title="statement not covered" >          return a.toString() == b.toString()</span>
         },
         structure: eq.false,
       },
       Date: {
-<span class="fstat-no" title="function not covered" >        strict(</span>a:string, b:Date) {
+<span class="fstat-no" title="function not covered" >        strict(</span>a: string, b: Date) {
 <span class="cstat-no" title="statement not covered" >          <span class="missing-if-branch" title="if path not taken" >I</span>if (a.toString() == b.toString()) <span class="cstat-no" title="statement not covered" >return true</span></span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >          <span class="missing-if-branch" title="if path not taken" >I</span>if (b.toJSON) {</span>
@@ -1206,10 +1218,10 @@ export function cmp(eq:EqualityIput) {
           }
 <span class="cstat-no" title="statement not covered" >          return false</span>
         },
-<span class="fstat-no" title="function not covered" >        loose(</span>a:string, b:Date) {
+<span class="fstat-no" title="function not covered" >        loose(</span>a: string, b: Date) {
 <span class="cstat-no" title="statement not covered" >          <span class="missing-if-branch" title="if path not taken" >I</span>if (a.toString() == b.toString()) <span class="cstat-no" title="statement not covered" >return true</span></span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >          <span class="missing-if-branch" title="if path not taken" >I</span>if ( b.toJSON) {</span>
+<span class="cstat-no" title="statement not covered" >          <span class="missing-if-branch" title="if path not taken" >I</span>if (b.toJSON) {</span>
             let v0
             let v1
 <span class="cstat-no" title="statement not covered" >            v0 = a</span>
@@ -1220,7 +1232,7 @@ export function cmp(eq:EqualityIput) {
 <span class="cstat-no" title="statement not covered" >          return false</span>
         },
         structure: eq.true,
-<span class="fstat-no" title="function not covered" >        diff(</span>a:string, b:Date) {
+<span class="fstat-no" title="function not covered" >        diff(</span>a: string, b: Date) {
 <span class="cstat-no" title="statement not covered" >          <span class="missing-if-branch" title="if path not taken" >I</span>if (a.toString() == b.toString())</span>
 <span class="cstat-no" title="statement not covered" >            return {</span>
               result: eq.STRICT,
@@ -1250,38 +1262,38 @@ export function cmp(eq:EqualityIput) {
         },
       },
       Null: {
-<span class="fstat-no" title="function not covered" >        loose(</span>a:string, b:null) {
+<span class="fstat-no" title="function not covered" >        loose(</span>a: string, b: null) {
 <span class="cstat-no" title="statement not covered" >          return !a == !b</span>
         },
       },
       Undefined: {
-<span class="fstat-no" title="function not covered" >        loose(</span>a:string, b:undefined) {
+<span class="fstat-no" title="function not covered" >        loose(</span>a: string, b: undefined) {
 <span class="cstat-no" title="statement not covered" >          return !a == !b</span>
         },
       },
       Array: {
-<span class="fstat-no" title="function not covered" >        strict(</span>a:string, b:Array&lt;any&gt;) {
+<span class="fstat-no" title="function not covered" >        strict(</span>a: string, b: Array&lt;any&gt;) {
 <span class="cstat-no" title="statement not covered" >          return a == b.join()</span>
         },
-<span class="fstat-no" title="function not covered" >        loose(</span>a:string, b:Array&lt;any&gt;) {
-<span class="cstat-no" title="statement not covered" >          return a== b.join()</span>
+<span class="fstat-no" title="function not covered" >        loose(</span>a: string, b: Array&lt;any&gt;) {
+<span class="cstat-no" title="statement not covered" >          return a == b.join()</span>
         },
         structure: eq.true,
       },
       Object: {
-<span class="fstat-no" title="function not covered" >        strict(</span>a:string, b:object) {
+<span class="fstat-no" title="function not covered" >        strict(</span>a: string, b: object) {
 <span class="cstat-no" title="statement not covered" >          return a.toString() == b.toString()</span>
         },
-<span class="fstat-no" title="function not covered" >        loose(</span>a:string, b:object) {
+<span class="fstat-no" title="function not covered" >        loose(</span>a: string, b: object) {
 <span class="cstat-no" title="statement not covered" >          return a.toString() == b.toString()</span>
         },
         structure: eq.false,
       },
       Function: {
-<span class="fstat-no" title="function not covered" >        strict(</span>a:string, b:Function) {
+<span class="fstat-no" title="function not covered" >        strict(</span>a: string, b: Function) {
 <span class="cstat-no" title="statement not covered" >          return a.toString() == b.toString()</span>
         },
-<span class="fstat-no" title="function not covered" >        loose(</span>a:string, b:Function) {
+<span class="fstat-no" title="function not covered" >        loose(</span>a: string, b: Function) {
 <span class="cstat-no" title="statement not covered" >          return a.toString() == b.toString()</span>
         },
         structure: eq.true,
@@ -1290,50 +1302,50 @@ export function cmp(eq:EqualityIput) {
     RegExp: {
       // ввести сравнение регулярок с json версией mongoosejs
       RegExp: {
-<span class="fstat-no" title="function not covered" >        strict(</span>a:RegExp, b:RegExp) {
+<span class="fstat-no" title="function not covered" >        strict(</span>a: RegExp, b: RegExp) {
 <span class="cstat-no" title="statement not covered" >          return a === b</span>
         },
-<span class="fstat-no" title="function not covered" >        loose(</span>a:RegExp, b:RegExp) {
+<span class="fstat-no" title="function not covered" >        loose(</span>a: RegExp, b: RegExp) {
 <span class="cstat-no" title="statement not covered" >          return a.toString() == b.toString()</span>
         },
         structure: eq.true,
         diff: eq.diffString,
       },
       Undefined: {
-        loose(a:RegExp, b:undefined) {
+        loose(a: RegExp, b: undefined) {
           return a.test('undefined')
         },
       },
       Null: {
-        loose(a:RegExp, b:null) {
+        loose(a: RegExp, b: null) {
           return a.test('null')
         },
       },
       Object: {
-<span class="fstat-no" title="function not covered" >        strict(</span>a:RegExp, b:string) {
+<span class="fstat-no" title="function not covered" >        strict(</span>a: RegExp, b: string) {
 <span class="cstat-no" title="statement not covered" >          return a.toString() == b.toString()</span>
         },
-<span class="fstat-no" title="function not covered" >        loose(</span>a:RegExp, b:string) {
+<span class="fstat-no" title="function not covered" >        loose(</span>a: RegExp, b: string) {
 <span class="cstat-no" title="statement not covered" >          return a.toString() == b.toString()</span>
         },
       },
     },
     Date: {
       Date: {
-<span class="fstat-no" title="function not covered" >        strict(</span>a:Date, b:Date) {
+<span class="fstat-no" title="function not covered" >        strict(</span>a: Date, b: Date) {
 <span class="cstat-no" title="statement not covered" >          <span class="missing-if-branch" title="if path not taken" >I</span>if (a === b) <span class="cstat-no" title="statement not covered" >return true</span></span>
 <span class="cstat-no" title="statement not covered" >          return a.toString() == b.toString()</span>
         },
-<span class="fstat-no" title="function not covered" >        loose(</span>a:Date, b:Date) {
+<span class="fstat-no" title="function not covered" >        loose(</span>a: Date, b: Date) {
 <span class="cstat-no" title="statement not covered" >          return a.toString() == b.toString()</span>
         },
         structure: eq.true,
       },
       Object: {
-<span class="fstat-no" title="function not covered" >        strict(</span>a:Date, b:object) {
+<span class="fstat-no" title="function not covered" >        strict(</span>a: Date, b: object) {
 <span class="cstat-no" title="statement not covered" >          return a.toString() == b.toString()</span>
         },
-<span class="fstat-no" title="function not covered" >        loose(</span>a:Date, b:object) {
+<span class="fstat-no" title="function not covered" >        loose(</span>a: Date, b: object) {
 <span class="cstat-no" title="statement not covered" >          return a.toString() == b.toString()</span>
         },
         structure: eq.false,
@@ -1425,10 +1437,10 @@ export function cmp(eq:EqualityIput) {
     },
     Function: {
       Function: {
-        strict(a:Function, b:Function) {
+        strict(a: Function, b: Function) {
           return a === b
         },
-        loose(a:Function, b:Function) {
+        loose(a: Function, b: Function) {
           return a.toString() == b.toString()
         },
         structure: eq.true,
@@ -1444,7 +1456,7 @@ export function cmp(eq:EqualityIput) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-02-16T16:07:03.881Z
+                at 2023-03-07T15:20:55.231Z
             </div>
         <script src="prettify.js"></script>
         <script>

@@ -1,6 +1,4 @@
-'use strict';
-
-var diff$1 = require('diff');
+import { diffLines } from 'diff';
 
 function cmp(eq) {
     return {
@@ -150,7 +148,7 @@ function cmp(eq) {
                         };
                     const result = WEB
                         ? [{ added: b, removed: a, value: a }]
-                        : diff$1.diffLines(a, b);
+                        : diffLines(a, b);
                     const srcLen = a.length;
                     const dstLen = b.length;
                     let unchangedCnt = 0;
@@ -1000,16 +998,5 @@ function has(data, path) {
         return true;
 }
 
-exports.diff = diff;
-exports.fold = fold;
-exports.get = get;
-exports.getComparator = getComparator;
-exports.has = has;
-exports.looseEq = looseEq;
-exports.set = set;
-exports.strictEq = strictEq;
-exports.structureEq = structureEq;
-exports.unfold = unfold;
-exports.unset = unset;
-module.exports = Object.assign(exports.default, exports);
-//# sourceMappingURL=index.js.map
+export { diff, fold, get, getComparator, has, looseEq, set, strictEq, structureEq, unfold, unset };
+//# sourceMappingURL=index.module.js.map
