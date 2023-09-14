@@ -9,6 +9,7 @@ __tests__
 .npmignore
 .prettierrc.js
 jest.config.js
-tsconfig.json
+tsconfig.*
 webpack.config.js
 yarn.lock
+rollup.*
